@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -16,7 +17,7 @@ const app = express();
 // Connect database
 mongoose.set('strictQuery', false);
 mongoose.connect(
-  "mongodb+srv://admin:dada@cluster0.rr61ffl.mongodb.net/Protouch?retryWrites=true&w=majority"
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 ).then(() => {
   console.log('connected')
 }).catch((err) => console.log(err));
